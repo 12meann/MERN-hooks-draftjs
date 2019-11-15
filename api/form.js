@@ -49,9 +49,11 @@ router.post(
     });
     try {
       const details = await newForm.save();
-      res
-        .status(201)
-        .json({ success: "You have succesfully sent the form.", details });
+      res.status(201).json({
+        success:
+          "You've successfully submitted the form. We'll contact you as soon as possible.",
+        details
+      });
     } catch (error) {
       res.status(500).json({ error: error });
     }
