@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const blogSchema = new mongoose.Schema(
   {
     title: {
-      type: String
-      // required: true
+      type: String,
+      required: true
     },
     body: {
       type: Object,
@@ -12,6 +12,15 @@ const blogSchema = new mongoose.Schema(
     },
     headerImg: {
       type: String
+    },
+    tags: [
+      {
+        type: String
+      }
+    ],
+    isPinned: {
+      type: Boolean,
+      default: false
     }
   },
   {

@@ -3,7 +3,7 @@ const router = express.Router();
 const Blog = require("../models/Blog");
 
 router.post("/", async (req, res) => {
-  const { title, body, headerImg } = req.body;
+  const { title, body, headerImg, tags, isPinned } = req.body;
   const data = new Blog({
     title,
     body,
@@ -20,6 +20,14 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const data = await Blog.find();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+router.get("/:blogId", async (req, res) => {
+  try {
+    const data = await Blog.findById(req.params.blogId);
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json(error);
