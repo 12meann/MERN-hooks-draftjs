@@ -13,6 +13,9 @@ const blogSchema = new mongoose.Schema(
     headerImg: {
       type: String
     },
+    headerImgId: {
+      type: String
+    },
     tags: [
       {
         type: String

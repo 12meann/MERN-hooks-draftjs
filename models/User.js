@@ -20,14 +20,7 @@ const userSchema = new Schema({
     type: String,
     require: true
   },
-  location: String,
-  facebookLink: String,
-  twitterLink: String,
-  instagramLink: String,
-  linkedinLink: String,
-  youtubeLink: String,
-  image: String,
-  imageId: String,
+
   isAdmin: {
     type: Boolean,
     default: false
