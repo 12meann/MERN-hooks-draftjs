@@ -13,10 +13,12 @@
   "author": "Me-ann Urgel",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cloudinary": "^1.17.0",
     "concurrently": "^5.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.10",
     "multer": "^1.4.2"
   },
