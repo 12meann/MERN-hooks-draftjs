@@ -50,7 +50,7 @@ router.post(
       const oldUser = await User.findOne({ email });
       if (oldUser)
         return res.status(400).json({
-          msg: "You already registered. Try logging in."
+          error: "You already registered. Try logging in."
         });
 
       //salt and hash password
