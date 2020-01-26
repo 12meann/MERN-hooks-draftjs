@@ -26,7 +26,6 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
     }
     const { email, password } = req.body;
-    // const user = { email, password };
 
     try {
       //check if user found using email
@@ -35,7 +34,7 @@ router.post(
       if (!user)
         return res
           .status(400)
-          .json({ msg: "Wrong credentials. Please try again." });
+          .json({ error: "Wrong credentials. Please try again." });
 
       //check if password correct
       const isMatch = await bcrypt.compare(password, user.password);
@@ -43,7 +42,7 @@ router.post(
       if (!isMatch)
         return res
           .status(400)
-          .json({ msg: "Wrong credentials. Please try again." });
+          .json({ error: "Wrong credentials. Please try again." });
 
       jwt.sign(
         { id: user.id },
