@@ -26,6 +26,7 @@ app.use("/form", require("./api/form"));
 app.use("/blog", require("./api/blog"));
 app.use("/admin/register", require("./api/register"));
 app.use("/admin/login", require("./api/login"));
+app.use("/admin/user", require("./api/user"));
 
 //serve static assets if in production
 if (process.env.NODE_ENV === "production") {
