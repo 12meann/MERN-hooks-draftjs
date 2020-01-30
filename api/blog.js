@@ -37,35 +37,44 @@ router.post(
     .trim()
     .isLength({ min: 1 })
     .withMessage("Title must not be empty"),
-  upload.single("image"),
+  // upload.single("image"),
   async (req, res) => {
     //validate title
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
+
     const { title, body, tags, isPinned } = req.body;
 
     try {
       //upload photo at cloudinary
-      let result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "travelBlog/blog/headerImg"
-      });
+      // let result = await cloudinary.uploader.upload(req.file.path, {
+      //   folder: "travelBlog/blog/headerImg"
+      // });
 
       const data = new Blog({
         title,
         body,
-        headerImg: result.secure_url,
-        headerImgId: result.public_id,
+        // headerImg: result.secure_url,
+        // headerImgId: result.public_id,
         tags,
         isPinned
       });
       const newBlog = await data.save();
+      console.log(newBlog);
       res
         .status(201)
         .json({ success: "Succesfully posted your blog", newBlog });
     } catch (error) {
-      res.status(500).json(error);
+      console.log(error);
+      if (error.name === "ValidationError") {
+        res
+          .status(400)
+          .json({ error: "Title and blog content must not be empty." });
+      } else {
+        res.status(500).json({ error: error.message });
+      }
     }
   }
 );
