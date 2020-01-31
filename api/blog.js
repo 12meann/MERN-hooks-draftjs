@@ -37,7 +37,6 @@ router.post(
     .trim()
     .isLength({ min: 1 })
     .withMessage("Title must not be empty"),
-  // upload.single("image"),
   async (req, res) => {
     //validate title
     const errors = validationResult(req);
@@ -48,16 +47,9 @@ router.post(
     const { title, body, tags, isPinned } = req.body;
 
     try {
-      //upload photo at cloudinary
-      // let result = await cloudinary.uploader.upload(req.file.path, {
-      //   folder: "travelBlog/blog/headerImg"
-      // });
-
       const data = new Blog({
         title,
         body,
-        // headerImg: result.secure_url,
-        // headerImgId: result.public_id,
         tags,
         isPinned
       });
@@ -94,8 +86,9 @@ router.get("/:blogId", async (req, res) => {
   try {
     const data = await Blog.findById(req.params.blogId);
     res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    console.log(err.response.data);
+    res.status(500).json({ error: "Something Went Wrong", err });
   }
 });
 
