@@ -84,8 +84,8 @@ router.get("/", async (req, res) => {
   try {
     const data = await Blog.find();
     res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json({ err, error: "Something Went Wrong" });
   }
 });
 
