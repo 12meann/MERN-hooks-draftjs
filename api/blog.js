@@ -74,10 +74,20 @@ router.post(
 //get blogs
 router.get("/", async (req, res) => {
   try {
-    const data = await Blog.find();
+    const data = await Blog.find({}).sort({ createdAt: -1 });
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json({ err, error: "Something Went Wrong" });
+  }
+});
+
+//get pinned posts
+router.get("/pinnedposts", async (req, res) => {
+  try {
+    const pinnedPosts = await Blog.find({ isPinned: true });
+    res.status(200).json(pinnedPosts);
+  } catch (err) {
+    res.status(500).json({ error: "Something Went Wrong", err });
   }
 });
 
@@ -87,12 +97,10 @@ router.get("/:blogId", async (req, res) => {
     const data = await Blog.findById(req.params.blogId);
     res.status(200).json(data);
   } catch (err) {
-    console.log(err.response.data);
+    console.log(err.response);
     res.status(500).json({ error: "Something Went Wrong", err });
   }
 });
-
-//get pinned posts
 
 // get top 10 tags
 
@@ -124,5 +132,27 @@ router.get("/:blogId", async (req, res) => {
 //     res.status(500).json({ errorMsg: "Server error", error });
 //   }
 // });
+
+//edit default image
+router.put("/:blogid/editimage", isAuth, upload.single("image"), (req, res) => {
+  Blog.findById(req.params.blogid).then(async blog => {
+    console.log(blog.headerImgId);
+    try {
+      if (blog.headerImgId) {
+        await cloudinary.uploader.destroy(blog.headerImgId);
+      }
+      let result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "travelBlog/blog/headerImg"
+      });
+      blog.headerImg = result.secure_url;
+      blog.headerImgId = result.public_id;
+      blog.save().then(updatedBlog => {
+        return res.status(200).json({ updatedBlog, success: "Image uploaded" });
+      });
+    } catch (err) {
+      if (err) return res.status(400).json({ error: err.message, err });
+    }
+  });
+});
 
 module.exports = router;
