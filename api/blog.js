@@ -54,12 +54,11 @@ router.post(
         isPinned
       });
       const newBlog = await data.save();
-      console.log(newBlog);
+
       res
         .status(201)
         .json({ success: "Succesfully posted your blog", newBlog });
     } catch (error) {
-      console.log(error);
       if (error.name === "ValidationError") {
         res
           .status(400)
@@ -122,16 +121,20 @@ router.get("/:blogId", async (req, res) => {
 //   }
 // });
 
-// //delete todo
+//delete todo
 
-// router.delete("/:id", getTodoId, isAuth, async (req, res) => {
-//   try {
-//     const deletedTodo = await res.todo.remove();
-//     res.status(200).json({ success: "Todo deleted", deletedTodo });
-//   } catch (error) {
-//     res.status(500).json({ errorMsg: "Server error", error });
-//   }
-// });
+router.delete("/:blogid", isAuth, async (req, res) => {
+  try {
+    const deletedBlog = await Blog.findByIdAndDelete(req.params.blogid);
+    // delete image in cloudinary
+    if (deletedBlog.headerImgId) {
+      await cloudinary.uploader.destroy(deletedBlog.headerImgId);
+    }
+    res.status(200).json({ success: "Blog deleted", deletedBlog });
+  } catch (error) {
+    res.status(500).json({ error: "Server error", err });
+  }
+});
 
 //edit default image
 router.put("/:blogid/editimage", isAuth, upload.single("image"), (req, res) => {
