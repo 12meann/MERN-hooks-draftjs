@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ContactForm = require("../models/ContactForm");
 const { check, validationResult } = require("express-validator");
+const isAuth = require("../middleware/isAuth");
 
 router.post(
   "/",
@@ -60,7 +61,7 @@ router.post(
   }
 );
 
-router.get("/", async (req, res) => {
+router.get("/", isAuth, async (req, res) => {
   try {
     const forms = await ContactForm.find();
     res.status(200).json(forms);
