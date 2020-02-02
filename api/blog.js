@@ -103,23 +103,31 @@ router.get("/:blogId", async (req, res) => {
 
 // get top 10 tags
 
-// //edit todo
-// router.patch("/:id", getTodoId, isAuth, async (req, res) => {
-//   try {
-//     if (res.todo !== null) {
-//       res.todo.todo = req.body.todo;
-//     }
-//     if (req.body.todo.trim() === "") {
-//       return res.status(400).json({ errorMsg: "Must not be empty" });
-//     }
-//     const updatedTodo = await res.todo.save();
-//     return res
-//       .status(200)
-//       .json({ success: "Successfully updated todo", updatedTodo });
-//   } catch (error) {
-//     return res.status(400).json({ errorMsg: "Something went wrong", error });
-//   }
-// });
+//edit blog
+router.patch(
+  "/:blogid",
+  isAuth,
+  check("title")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Title must not be empty"),
+  async (req, res) => {
+    try {
+      const updatedBlog = await Blog.findByIdAndUpdate(
+        req.params.blogid,
+        req.body,
+        { new: true }
+      );
+      //  = await res.todo.save();
+      console.log(updatedBlog);
+      return res
+        .status(200)
+        .json({ success: "Successfully updated blog", updatedBlog });
+    } catch (err) {
+      return res.status(400).json({ error: "Something went wrong", err });
+    }
+  }
+);
 
 //delete todo
 
