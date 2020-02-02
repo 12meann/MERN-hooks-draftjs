@@ -90,19 +90,50 @@ router.get("/pinnedposts", async (req, res) => {
   }
 });
 
+// get top 10 tags
+router.get("/populartags", async (req, res) => {
+  try {
+    const popularTags = await Blog.aggregate([
+      // Unwind the array
+      { $unwind: "$tags" },
+      // Group on tags with a count
+      {
+        $group: {
+          _id: "$tags",
+          count: { $sum: 1 }
+        }
+      },
+      // Optionally sort the tags by count descending
+      { $sort: { count: -1 } },
+      // Optionally limit to the top "n" results. Using 10 results here
+      { $limit: 10 }
+    ]);
+    console.log(popularTags);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//get popular tag links
+router.get("/populartaglink/:taglink", async (req, res) => {
+  try {
+    const docs = await Blog.find({ tags: req.params.taglink });
+    res.status(200).json(docs);
+    console.log(docs);
+  } catch (err) {
+    res.status(500).json({ error: "Something went wrong", err });
+  }
+});
+
 // get one blog
 router.get("/:blogId", async (req, res) => {
   try {
     const data = await Blog.findById(req.params.blogId);
     res.status(200).json(data);
   } catch (err) {
-    console.log(err.response);
     res.status(500).json({ error: "Something Went Wrong", err });
   }
 });
-
-// get top 10 tags
-
 //edit blog
 router.patch(
   "/:blogid",
@@ -118,8 +149,7 @@ router.patch(
         req.body,
         { new: true }
       );
-      //  = await res.todo.save();
-      console.log(updatedBlog);
+
       return res
         .status(200)
         .json({ success: "Successfully updated blog", updatedBlog });
@@ -147,7 +177,6 @@ router.delete("/:blogid", isAuth, async (req, res) => {
 //edit default image
 router.put("/:blogid/editimage", isAuth, upload.single("image"), (req, res) => {
   Blog.findById(req.params.blogid).then(async blog => {
-    console.log(blog.headerImgId);
     try {
       if (blog.headerImgId) {
         await cloudinary.uploader.destroy(blog.headerImgId);
