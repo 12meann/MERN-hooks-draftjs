@@ -108,9 +108,9 @@ router.get("/populartags", async (req, res) => {
       // Optionally limit to the top "n" results. Using 10 results here
       { $limit: 10 }
     ]);
-    console.log(popularTags);
-  } catch (error) {
-    console.log(error);
+    res.status(200).json(popularTags);
+  } catch (err) {
+    res.status(500).json({ error: "Something went wrong", err });
   }
 });
 
