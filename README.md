@@ -10,3 +10,5 @@ Using **Draft JS** as the WYSIWYG editor and **Context API** fro state managemen
 2. Run npm install
 3. Provide environment variables.
 4. Run npm run dev to run both front end and back end.
+
+Deploy in [heroku](https://travelblog-merndraftjs.herokuapp.com/).
