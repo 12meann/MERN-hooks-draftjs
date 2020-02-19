@@ -18,7 +18,7 @@ const db = mongoose.connection;
 db.once("open", () => console.log("Connected to mongodDB"));
 db.on("error", err => console.log(err));
 
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use("/", express.static(path.join(__dirname, "/client/build")));
 
 //parse form to json
 app.use(express.json());
