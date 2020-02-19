@@ -1,0 +1,244 @@
+@import "./config.scss";
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  column-gap: 20px;
+  overflow-x: hidden;
+  height: 100vh;
+  .sideHeading {
+    letter-spacing: 2px;
+    position: relative;
+    text-align: right;
+    .image {
+      display: none;
+    }
+    .logo {
+      padding: 0;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      h1 {
+        font-size: 30px;
+        font-weight: 700;
+      }
+    }
+    .subheader {
+      position: absolute;
+      top: 120px;
+      right: 0;
+    }
+    h5 {
+      margin-bottom: 10px;
+
+      font-size: 20px;
+      font-weight: 400;
+    }
+    .smm {
+      position: absolute;
+      top: 40%;
+      right: 0;
+      ul {
+        li {
+          padding-bottom: 10px;
+          a .icons {
+            color: #00203fbd;
+            font-size: 40px;
+            z-index:1;
+          }
+          // hover effect
+          .text {
+            font-size: 20px;
+            position: absolute;
+            width: 0;
+            left: 85%;
+            margin-top: 10px;
+            margin-left: 0;
+            transition: 1s;
+            overflow: hidden;
+            z-index:-1;
+          }
+          &:hover .text {
+            width: 120px;
+            margin-left: -155px;
+          }
+        }
+      }
+    }
+    .footerHeading {
+      margin-top: 120px;
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+    }
+  }
+  .landingMenu {
+    display: grid;
+    grid-template-areas:
+      "photography photography photography"
+      "about blog contact"
+      "services services services";
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        color: white;
+        &:hover {
+          cursor: pointer;
+        }
+        h3 {
+          padding: 20px 30px;
+          border: rgba(0, 0, 0, 0) 1px solid;
+        }
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+
+        @include easeOut;
+        h3 {
+          background-color: rgba(0, 0, 0, 0.5);
+          border: $white 1px solid;
+        }
+        a {
+          color: $sec-text-color;
+        }
+      }
+    }
+    .photography,
+    .about,
+    .services,
+    .contact,
+    .blog {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 24px;
+      line-height: 24px;
+      font-weight: 400;
+      color: $sec-text-color;
+    }
+    .photography {
+      grid-area: photography;
+      background-image: url("../images/photography.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .about {
+      grid-area: about;
+      background-image: url("../images/about.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .services {
+      grid-area: services;
+      background-image: url("../images/services.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .contact {
+      grid-area: contact;
+      background-image: url("../images/contact.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+    .blog {
+      grid-area: blog;
+      background-image: url("../images/blog1.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+// min: 992px
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+  .container {
+    .sideHeading {
+      h5 {
+        font-size: 16px;
+      }
+    }
+  }
+}
+//min: 501
+@include mediaMd {
+  .container {
+    grid-template-columns: 1fr;
+
+    .landingMenu {
+      display: none;
+      .photography,
+      .about,
+      .services,
+      .contact,
+      .blog {
+        grid-area: unset;
+      }
+    }
+    .sideHeading {
+      color: $white;
+      .logo,
+      .subheader,
+      .smm {
+        position: relative;
+        text-align: center;
+      }
+      .image {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        min-width: 100%;
+        min-height: 100%;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+      }
+      .smm {
+        ul {
+          display: flex;
+          margin-left: 0;
+          justify-content: center;
+          li {
+            padding: 10px;
+            pointer-events: none;
+            span {
+              display: none;
+            }
+            a .icons {
+              color: $white;
+            }
+          }
+        }
+      }
+      .footerHeading {
+        right: 50%;
+        transform: translateX(50%);
+        text-align: center;
+      }
+    }
+  }
+}
+//max: 500
+@include mediaSm {
+  .container {
+    .sideHeading {
+      .image {
+        left: -200px;
+      }
+    }
+  }
+}

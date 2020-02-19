@@ -1,0 +1,142 @@
+@import "./config.scss";
+
+// nav bar sticky
+
+nav {
+  position: relative;
+
+  .mainLogo {
+    float: left;
+    padding: 20px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: $text-color;
+    letter-spacing: 2px;
+  }
+  .links {
+    float: right;
+    li {
+      display: inline-block;
+      padding: 20px 20px;
+      .link {
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        font-weight: 400;
+        font-size: 14px;
+        color: $text-color;
+        vertical-align: middle;
+        line-height: 18px;
+      }
+      .link:hover {
+        color: $sec-color;
+        // border-bottom: 3px $sec-text-color solid;
+        // padding-bottom: 15px;
+        @include easeOut;
+      }
+    }
+  }
+}
+//sticky header class
+.sticky {
+  background: $main-color;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  nav .links .link,
+  nav .mainLogo {
+    color: $white;
+  }
+}
+//burger menu
+
+.toggle {
+  padding: 15px 20px;
+  height: 60px;
+  color: $white;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  i {
+    color: $sec-text-color;
+    font-size: 30px;
+    &:hover {
+      color: $sec-text-color;
+      cursor: pointer;
+    }
+  }
+}
+
+.links.active {
+  display: block;
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+  nav {
+    .mainLogo {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom: 1px solid $white;
+      top: 0;
+    }
+    .links {
+      right: 50%;
+      position: relative;
+      transform: translateX(50%);
+    }
+  }
+}
+//min:501
+@include mediaMd {
+  nav {
+    .toggle {
+      display: block;
+      cursor: pointer;
+    }
+    .links {
+      text-align: center;
+      float: none;
+      margin-top: 100px;
+      clear: both;
+      display: none;
+      cursor: pointer;
+      li {
+        display: block;
+        @include easeOut;
+        &:hover {
+          background: $sec-text-color;
+
+          .link {
+            color: $text-color;
+            border: 0;
+            background-color: $main-color;
+          }
+        }
+        &:hover .link {
+          color: $main-color;
+          background-color: $sec-text-color;
+          border-bottom: unset;
+          padding-bottom: unset;
+        }
+      }
+    }
+  }
+}
+//max:500
+@include mediaSm {
+}
+
+//toggle icon
+.svg-inline--fa.fa-w-14 {
+  width: unset;
+}

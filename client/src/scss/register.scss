@@ -1,0 +1,126 @@
+@import "./config.scss";
+
+.registerSection {
+  margin-bottom: 100px;
+  h2,
+  p {
+    text-align: center;
+    margin: 50px;
+  }
+  & a.link {
+    color: blue;
+    &:hover {
+      color: #fea49f;
+    }
+  }
+  .message {
+    text-align: center;
+    font-size: 18px;
+
+    padding-bottom: 10px;
+    &.loading {
+      color: $main-color;
+    }
+    &.error {
+      color: red;
+    }
+  }
+  .content {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px 0;
+    .form {
+      padding: 10px;
+      width: 90%;
+      margin: 0 auto;
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        .errorMsg {
+          position: absolute;
+          bottom: 10px;
+          left: 0;
+          color: red;
+        }
+        .icon {
+          position: absolute;
+          z-index: 2;
+          top: 20px;
+          right: 20px;
+          color: #00203fa8;
+          &.link {
+            cursor: pointer;
+          }
+        }
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        font-size: 18px;
+        outline: none;
+        margin-bottom: 30px;
+        &.hasError {
+          border: red 1.5px solid;
+          border-radius: 5px;
+        }
+      }
+
+      input[type="submit"] {
+        grid-area: submit;
+        width: 100%;
+        height: 50px;
+        background-color: $main-color;
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        outline: none;
+        border: none;
+        font-size: 20px;
+        &:hover {
+          @include easeOut;
+          color: $sec-color;
+          cursor: pointer;
+          background-color: #003461;
+        }
+      }
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+  .contactSection {
+    .content {
+      .form {
+        width: 100%;
+      }
+    }
+  }
+}
+
+//min:501
+@include mediaMd {
+}
+//max:500
+@include mediaSm {
+  .contactSection {
+    margin-bottom: unset;
+  }
+}

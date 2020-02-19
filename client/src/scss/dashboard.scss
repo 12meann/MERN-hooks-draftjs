@@ -1,0 +1,59 @@
+@import "./config.scss";
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: $white;
+  .sideBar {
+    width: 250px;
+    background: #292828;
+    color: white;
+    text-align: center;
+    .name {
+      color: white;
+      font-size: 30px;
+      padding: 50px 0;
+      letter-spacing: 2px;
+      margin: unset;
+    }
+    .links {
+      padding: 40px 0;
+      li {
+        padding: 20px 0;
+        a {
+          color: white;
+          font-size: 20px;
+          &:hover {
+            color: $sec-color;
+          }
+          .pinnedIcon {
+            color: $sec-color;
+          }
+        }
+      }
+    }
+  }
+  .mainView {
+    flex: 1;
+    padding: "10px";
+    .homeDashboard {
+      padding: 20px;
+      color: white;
+      h2 {
+        padding: 30px 0;
+        color: $text-color;
+        font-size: 30px;
+        margin: unset;
+      }
+      .body {
+        line-height: 30px;
+        font-size: 18px;
+        margin-top: 50px;
+        color: $text-color;
+        p {
+          padding: 20px 0;
+        }
+      }
+    }
+  }
+}

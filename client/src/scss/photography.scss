@@ -1,0 +1,96 @@
+@import "./config.scss";
+
+.photographySection {
+  margin-bottom: 100px;
+  text-align: center;
+  .filter-images {
+    text-align: center;
+    margin-bottom: 50px;
+    h4 {
+      font-size: 20px;
+      font-weight: 400;
+      padding-bottom: 20px;
+    }
+    select {
+      width: 250px;
+      height: 50px;
+      border-color: #adefd1ff;
+      border-radius: 5px;
+      font-family: "Montseratt, serif";
+      letter-spacing: 2px;
+      font-size: 20px;
+      padding: 10px;
+      -webkit-appearance: button;
+      -moz-appearance: button;
+      outline: none;
+      background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+      background-position: calc(100% - 25px) calc(1em + 2px),
+        calc(100% - 20px) calc(1em + 3px), calc(100% - 2.5em) 0.5em;
+      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+      background-repeat: no-repeat;
+      &:hover {
+        transition: 0.5s;
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            $main-color 50%
+          ),
+          linear-gradient(135deg, $main-color 50%, transparent 50%),
+          linear-gradient(to right, #ccc, #ccc);
+      }
+    }
+  }
+  .content {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .imageBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+    .box {
+      position: relative;
+      height: 100%;
+    }
+    img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+}
+//min:501
+@include mediaMd {
+}
+//max:500
+@include mediaSm {
+  .photographySection {
+    .content {
+      width: 100%;
+      .imageBox {
+        padding: 10px;
+      }
+    }
+  }
+  .hero .heroContent h1 {
+    margin: unset;
+  }
+}

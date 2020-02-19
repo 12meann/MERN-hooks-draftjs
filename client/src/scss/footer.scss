@@ -1,0 +1,142 @@
+@import "./config.scss";
+
+footer {
+  margin-top: auto;
+  display: grid;
+  background-color: #00203fbd;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  color: $white;
+  height: auto;
+  padding: 0 20px 20px 20px;
+  h5 {
+    font-size: 1.5rem;
+    color: $sec-text-color;
+  }
+  .line {
+    margin: 10px 0;
+    height: 2px;
+    width: 90%;
+    background-color: #2626263f;
+  }
+  .col1 {
+    text-align: right;
+    padding-top: 30px;
+    .line {
+      width: 100%;
+    }
+    ul {
+      display: flex;
+      padding-top: 20px;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      li {
+        padding-right: 20px;
+        .icon {
+          font-size: 2.5rem;
+          color: $white;
+          &:hover {
+            color: $sec-text-color;
+          }
+        }
+      }
+    }
+  }
+  .col2 {
+    text-align: center;
+    align-self: center;
+    line-height: 30px;
+    h4 {
+      font-size: 1.8rem;
+      color: $sec-text-color;
+      padding-bottom: 10px;
+    }
+    span {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  .col3 {
+    padding-top: 30px;
+
+    ul {
+      padding-top: 20px;
+      columns: 2;
+      li {
+        padding-bottom: 10px;
+        .footerLinks {
+          color: $white;
+          &:hover {
+            color: $sec-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+  footer {
+    margin-top: 100px;
+    display: grid;
+    background-color: #00203fbd;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    text-align: center;
+    grid-gap: 30px;
+    padding-top: 20px;
+    .line {
+      display: none;
+    }
+    .col1 {
+      text-align: center;
+      order: 1;
+
+      ul {
+        justify-content: center;
+        li:nth-child(5) {
+          padding-right: 0;
+        }
+      }
+    }
+    .col2 {
+      order: 3;
+    }
+    .col3 {
+      order: 2;
+      ul {
+        width: 50%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+//min:501
+@include mediaMd {
+  footer {
+    .col3 {
+      ul {
+        width: 70%;
+      }
+    }
+  }
+}
+//max:500
+@include mediaSm {
+  footer {
+    .col3 {
+      ul {
+        width: 100%;
+      }
+    }
+  }
+}

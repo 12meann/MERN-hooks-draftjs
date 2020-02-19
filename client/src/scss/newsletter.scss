@@ -1,0 +1,94 @@
+@import "./config.scss";
+.newsletter {
+  width: 80%;
+  margin: 200px auto 100px auto;
+  text-align: center;
+  justify-content: center;
+  padding: 0 20px;
+  h3 {
+    color: $title;
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+  p {
+    padding-bottom: 20px;
+  }
+  form {
+    width: 500px;
+    justify-self: center;
+    display: inline-block;
+    margin: 30px auto 0 auto;
+    input {
+      position: relative;
+
+      font-size: 20px;
+      transition: 0.5s;
+      &[type="text"] {
+        background-color: $white;
+        width: 340px;
+        height: 60px;
+        border: 2px solid #00203fbd;
+        outline: none;
+        padding: 0 25px;
+        border-radius: 25px 0 0 25px;
+        &::placeholder {
+          color: $title;
+        }
+      }
+      &[type="submit"] {
+        background-color: #00203fbd;
+        color: $white;
+        width: 150px;
+        height: 60px;
+        border: 2px solid transparent;
+        outline: none;
+        padding: 0 25px;
+        border-radius: 0 25px 25px 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.5s;
+        font-weight: 700;
+        &:hover {
+          background-color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+}
+//min:501
+@include mediaMd {
+  .newsletter {
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+      input[type="submit"] {
+        border-radius: 25px;
+        width: 100%;
+      }
+    }
+  }
+}
+//max:500
+@include mediaSm {
+  .newsletter {
+    width: 100%;
+  }
+}

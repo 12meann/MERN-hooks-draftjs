@@ -1,0 +1,82 @@
+@import "./config.scss";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  .modal {
+    z-index: 100;
+    background: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 3px;
+    max-width: 500px;
+    padding: 50px 20px 20px;
+    text-align: center;
+    line-height: 25px;
+  }
+  .modal-header {
+    display: flex;
+    justify-content: flex-end;
+    .modal-close-button {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #000000;
+      opacity: 0.3;
+      cursor: pointer;
+      border: none;
+    }
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    button {
+      padding: 10px 20px;
+      background-color: $main-color;
+      color: $white;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border: 1px solid $main-color;
+      border-radius: 3px;
+      cursor: pointer;
+      &:hover {
+        color: $sec-color;
+      }
+    }
+  }
+}
+
+//max:500
+@include mediaSm {
+  .modal-wrapper {
+    .modal {
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}

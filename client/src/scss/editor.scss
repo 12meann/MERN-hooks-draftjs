@@ -1,0 +1,231 @@
+@import "./config.scss";
+
+.blogItem {
+  margin: 0 60px;
+}
+.editor {
+  width: 100%;
+  margin: 0 auto 100px auto;
+  small {
+    color: red;
+  }
+}
+
+.RichEditor-root {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: "Georgia", serif;
+  font-size: 14px;
+  margin: 10px 0 30px;
+  &.hasError {
+    border-color: red;
+  }
+}
+.RichEditor-editor {
+  // border-top: 1px solid #ddd;
+  cursor: text;
+  font-size: 20px;
+  margin-top: 10px;
+  line-height: 35px;
+  padding: 20px;
+  min-height: 350px;
+}
+
+.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.RichEditor-editor .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+//custom blockquote style
+.RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid #c3c3c3;
+  color: #666;
+  font-family: "Hoefler Text", "Georgia", serif;
+  font-style: italic;
+  margin: 50px 0 50px 60px;
+  padding: 10px 20px;
+  line-height: 32px;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+.RichEditor-h1 {
+  font-size: 32px;
+}
+.RichEditor-h2 {
+  font-size: 28px;
+  font-family: unset;
+  color: unset;
+  margin-left: unset;
+}
+.RichEditor-h3 {
+  font-size: 26px;
+}
+.RichEditor-h4 {
+  font-size: 24px;
+}
+.RichEditor-h5 {
+  font-size: 20px;
+}
+.RichEditor-h6 {
+  font-size: 18px;
+}
+
+.RichEditor-editor .public-DraftStyleDefault-pre {
+  background-color: #3f3f3f;
+  font-family: "Inconsolata", "Menlo", "Consolas", monospace;
+  font-size: 16px;
+  padding: 20px;
+  color: white;
+  margin: 20px;
+  min-width: 50%;
+}
+
+//button styles
+.RichEditor-buttons {
+  background-color: #3a3a3a;
+  padding: 10px;
+}
+.RichEditor-controls {
+  font-family: "Helvetica", sans-serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+  user-select: none;
+}
+
+.RichEditor-styleButton {
+  color: $white;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+  border: 1px solid grey;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.RichEditor-activeButton {
+  color: $main-color;
+  background-color: $sec-color;
+}
+
+// @ blogItem "show blog"
+//tags
+.tags {
+  margin-bottom: 50px;
+  padding-left: 20px;
+  h3 {
+    padding-bottom: 20px;
+  }
+}
+//pinned post
+.isPinned {
+  display: flex;
+  .pinnedText {
+    background-color: #fea49f;
+    color: white;
+    padding: 10px 30px;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    margin-top: -50px;
+    line-height: 32px;
+  }
+  .bookmark {
+    color: #216ba5;
+  }
+}
+//dropdown button settings
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  z-index: 3;
+  right: 20px;
+  margin-top: -50px;
+}
+.dropbtn {
+  background-color: #d8180e;
+  color: white;
+  padding: 20px 30px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  border: none;
+  outline: none;
+  &:focus,
+  &:hover {
+    background-color: #f7291e;
+  }
+}
+.dropdownIcon {
+  margin-left: 15px;
+  padding-left: 7px;
+  border-left: 1px solid #b39b9b;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+  button,
+  a {
+    cursor: pointer;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    // display: block;
+    display: flex;
+    width: 100%;
+    border: none;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  .deleteIcon {
+    color: #f7291e;
+  }
+}
+
+.show {
+  display: block;
+  @include easeOut;
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//**********editor*******************
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+}
+//min:501
+@include mediaMd {
+  .blogItem {
+    margin: unset;
+  }
+}
+//max:500
+@include mediaSm {
+}

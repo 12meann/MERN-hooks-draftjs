@@ -1,0 +1,105 @@
+@import "./config.scss";
+
+.homeContent {
+  clear: both;
+
+  .description {
+    padding-top: 400px;
+    margin-left: 0;
+    h2 {
+      text-align: center;
+      margin-left: 0;
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+      width: 80%;
+      margin: 60px auto;
+      text-align: center;
+      li {
+        padding: 40px;
+        letter-spacing: 2px;
+        .icon {
+          margin: 30px 20px;
+          color: #00203fbd;
+        }
+        h5 {
+          padding: 20px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .recentBlogs {
+    margin-top: 200px;
+  }
+  .testimonials {
+    margin-top: 200px;
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+}
+//min:501
+@include mediaMd {
+}
+//max:500
+@include mediaSm {
+}
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+  .homeContent {
+    .description {
+      ul {
+        width: 100%;
+        column-gap: 20px;
+      }
+    }
+  }
+}
+//min:501
+@include mediaMd {
+  .homeContent {
+    .description {
+      h2 {
+        font-size: 40px;
+      }
+      ul {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+//max:500
+@include mediaSm {
+  .homeContent {
+    .description {
+      h2 {
+        font-size: 30px;
+        padding: 10px;
+      }
+      ul {
+        li {
+          padding: 20px;
+        }
+      }
+    }
+  }
+}

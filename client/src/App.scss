@@ -1,0 +1,33 @@
+@import "./scss/config.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  min-height: 100%;
+  background-color: $white;
+  color: $text-color;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  animation: transitionIn 0.75s;
+}
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+}
+p {
+  letter-spacing: 2px;
+}
+ul {
+  list-style: none;
+}

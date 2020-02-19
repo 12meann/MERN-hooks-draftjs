@@ -1,0 +1,58 @@
+@import "./config.scss";
+
+.aboutSection {
+  width: 100%;
+  margin-bottom: 100px;
+  .aboutContent {
+    p {
+      font-size: 18px;
+      width: 80%;
+      margin: 10px auto 50px;
+      line-height: 25px;
+    }
+    ul {
+      // display: inline-block;
+      width: 80%;
+      margin-left: 100px;
+      li {
+        padding-bottom: 15px;
+        .listIcon {
+          margin-right: 10px;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+//*************************************//
+// Media Queries //
+//*************************************//
+
+//min:992
+@include mediaXl {
+}
+//min:769
+@include mediaLg {
+}
+//min:501
+@include mediaMd {
+  .aboutSection {
+    .aboutContent {
+      h2 {
+        margin-left: 20px;
+        font-size: 30px;
+      }
+      .line {
+        margin: 30px 20px;
+      }
+      ul {
+        margin-left: 50px;
+        padding: 20px;
+      }
+    }
+  }
+}
+//max:500
+@include mediaSm {
+}
