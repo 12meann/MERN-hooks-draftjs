@@ -18,6 +18,8 @@ const db = mongoose.connection;
 db.once("open", () => console.log("Connected to mongodDB"));
 db.on("error", err => console.log(err));
 
+app.use(express.static(path.join(__dirname, "/client/build")));
+
 //parse form to json
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
@@ -31,7 +33,6 @@ app.use("/admin/user", require("./api/user"));
 
 //serve static assets if in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
